@@ -22,10 +22,18 @@ async function run() {
     await client.connect();
     const serviceCollection = client.db("furnitureItem").collection("item");
 
+    // Item API
     app.get("/item", async (req, res) => {
       const query = {};
       const cursor = serviceCollection.find(query);
       const items = await cursor.limit(6).toArray();
+      res.send(items);
+    });
+
+    app.get("/itemAll", async (req, res) => {
+      const query = {};
+      const cursor = serviceCollection.find(query);
+      const items = await cursor.toArray();
       res.send(items);
     });
 
