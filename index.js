@@ -44,6 +44,17 @@ async function run() {
       res.send(item);
     });
 
+    // user item
+    app.get("/items/:email", async (req, res) => {
+      const email = req.params.email;
+      console.log(email);
+      const query = { email: email };
+      const cursor = await serviceCollection.find(query);
+      const items = await cursor.toArray();
+      console.log(items);
+      res.send(items);
+    });
+
     // POST
     app.post("/item", async (req, res) => {
       const newItem = req.body;
