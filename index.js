@@ -43,6 +43,12 @@ async function run() {
       const item = await serviceCollection.findOne(query);
       res.send(item);
     });
+    app.get("/item/:email", async (req, res) => {
+      const id = req.params.email;
+      const query = email;
+      const item = await serviceCollection.findOne(query);
+      res.send(item);
+    });
 
     // POST
     app.post("/item", async (req, res) => {
